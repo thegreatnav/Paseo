@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "388372090850",
+    "project_id": "paseo-64003",
+    "storage_bucket": "paseo-64003.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388372090850:android:f429a7ce5a0829600ab3bb",
+        "android_client_info": {
+          "package_name": "com.example.practiceapp1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfmz6VML2AszBi7DFTt18LmVhaE2udImM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
