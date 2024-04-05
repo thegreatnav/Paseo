@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     RecentsAdapter recentsAdapter;
     TopPlacesAdapter topPlacesAdapter;
     TextView tv4;
-    ImageView hotels,flights,profile;
+    ImageView hotels,flights,profile,imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,15 @@ public class MainActivity extends AppCompatActivity {
         hotels=findViewById(R.id.button_hotels);
         flights=findViewById(R.id.button_flights);
         profile=findViewById(R.id.button_profile);
+        imageView=findViewById(R.id.imageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(i);
+
+            }
+        });
         List<RecentsData> recentsDataList = new ArrayList<>();
         recentsDataList.add(new RecentsData("AM Lake","India","From $200",R.drawable.recentimage1));
         recentsDataList.add(new RecentsData("Nilgiri Hills","India","From $300",R.drawable.recentimage2));
@@ -89,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(MainActivity.this, ProfileActivity.class);
+                Intent i=new Intent(MainActivity.this, Chat.class);
                 startActivity(i);
             }
         });

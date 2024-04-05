@@ -1,30 +1,28 @@
 package com.example.practiceapp1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
+
 import com.example.practiceapp1.databinding.ActivityHotelsBinding;
 
 public class Hotels extends AppCompatActivity {
 
-    private ActivityHotelsBinding binding;
 
+    Button logoutbtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        binding = ActivityHotelsBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        setSupportActionBar(binding.toolbar);
-
-        binding.fab.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_hotels);
+        logoutbtn=findViewById(R.id.back);
+        logoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAnchorView(R.id.fab)
-                        .setAction("Action", null).show();
+                Intent i=new Intent(Hotels.this,MainActivity.class);
+                startActivity(i);
             }
         });
     }

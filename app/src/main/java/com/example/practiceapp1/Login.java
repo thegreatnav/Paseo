@@ -85,7 +85,7 @@ public class Login extends AppCompatActivity {
                 }
                 progressBar.setVisibility(View.VISIBLE);
 
-                fauth.createUserWithEmailAndPassword(email,Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fauth.signInWithEmailAndPassword(email,Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
