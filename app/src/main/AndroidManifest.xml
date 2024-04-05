@@ -13,16 +13,28 @@
         android:theme="@style/Theme.PracticeApp1"
         tools:targetApi="31">
         <activity
+            android:name=".Register"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ProfileActivity"
             android:exported="false"
             android:label="@string/title_activity_profile"
             android:theme="@style/Theme.PracticeApp1">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW_PROFILE" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Flights"
             android:exported="false"
@@ -30,10 +42,10 @@
             android:theme="@style/Theme.PracticeApp1">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW_FLIGHTS" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Hotels"
             android:exported="false"
@@ -41,6 +53,7 @@
             android:theme="@style/Theme.PracticeApp1">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW_HOTELS" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -64,7 +77,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
