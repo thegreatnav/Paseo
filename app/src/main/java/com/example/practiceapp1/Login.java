@@ -90,8 +90,13 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
+
+                            mEmail.setText("");
+                            mPassword.setText("");
                             Toast.makeText(getApplicationContext(),"Login Successful",Toast.LENGTH_LONG);
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                            intent.putExtra("User_Name",email);
+                            startActivity(intent);
                         }
 
                         else {

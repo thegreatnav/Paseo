@@ -21,6 +21,8 @@ import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -38,6 +40,9 @@ public class Register extends AppCompatActivity {
     String userId;
     FirebaseAuth fauth;
 
+    FirebaseDatabase db;
+    DatabaseReference reference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,19 +58,17 @@ public class Register extends AppCompatActivity {
         fauth=FirebaseAuth.getInstance();
         fstore=FirebaseFirestore.getInstance();
 
-        if(fauth.getCurrentUser()!=null)
+       /* if(fauth.getCurrentUser()!=null)
         {
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             finish();
-        }
-
-
+        }*/
 
         mRegisterBn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final String email=mEmail.getText().toString().trim();
-                String Password=mPassword.getText().toString().trim();
+                final String Password=mPassword.getText().toString().trim();
                 final String Fullname=mFullname.getText().toString().trim();
                 final String Phone=mPhone.getText().toString().trim();
                 if(TextUtils.isEmpty(email))
@@ -100,6 +103,19 @@ public class Register extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             FirebaseUser fuser=fauth.getCurrentUser();
+                            String em=email;
+                            String modifiedString = em.replace(".com", "");
+                            User userinput = new User (Fullname,Phone,email,Password);
+                            db = FirebaseDatabase.getInstance();
+                            reference = db.getReference("User");
+                            reference.child(modifiedString).setValue(userinput).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(getApplicationContext(),"DATA ADDED",Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+
                             fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
@@ -118,6 +134,7 @@ public class Register extends AppCompatActivity {
                             user.put("fName",Fullname);
                             user.put("email",email);
                             user.put("Phone",Phone);
+                            user.put("Password",Password);
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
@@ -130,7 +147,13 @@ public class Register extends AppCompatActivity {
 
                                 }
                             });
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            mPassword.setText("");
+                            mEmail.setText("");
+                            mFullname.setText("");
+                            mPhone.setText("");
+                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                            intent.putExtra("User_Name",email);
+                            startActivity(intent);
 
 
                         }
@@ -143,8 +166,6 @@ public class Register extends AppCompatActivity {
                 });
             }
         });
-
-
 
         mloginbtn.setOnClickListener(new View.OnClickListener() {
 

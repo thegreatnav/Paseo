@@ -5,6 +5,8 @@ import android.os.Bundle;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 
 import com.example.practiceapp1.databinding.ActivityHotelsBinding;
@@ -12,18 +14,18 @@ import com.example.practiceapp1.databinding.ActivityHotelsBinding;
 public class Hotels extends AppCompatActivity {
 
 
-    Button logoutbtn;
+    WebView webview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hotels);
-        logoutbtn=findViewById(R.id.back);
-        logoutbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i=new Intent(Hotels.this,MainActivity.class);
-                startActivity(i);
-            }
-        });
+
+        //https://www.airbnb.co.in/
+        webview=findViewById(R.id.web);
+        webview.getSettings().setJavaScriptEnabled(true);
+        webview.setWebViewClient(new WebViewClient());
+        webview.loadUrl("https://www.airbnb.co.in/");
+
+
     }
 }

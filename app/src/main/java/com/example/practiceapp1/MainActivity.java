@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     TopPlacesAdapter topPlacesAdapter;
     TextView tv4;
     ImageView hotels,flights,profile,imageView;
+    String user_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +45,14 @@ public class MainActivity extends AppCompatActivity {
         flights=findViewById(R.id.button_flights);
         profile=findViewById(R.id.button_profile);
         imageView=findViewById(R.id.imageView);
+        Bundle extras = getIntent().getExtras();
+        user_name=extras.getString("User_Name");
+        Toast.makeText(MainActivity.this,user_name,Toast.LENGTH_SHORT).show();
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(MainActivity.this, ProfileActivity.class);
+                i.putExtra("User_name",user_name);
                 startActivity(i);
 
             }
