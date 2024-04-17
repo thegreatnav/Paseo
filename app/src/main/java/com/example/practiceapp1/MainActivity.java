@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     RecentsAdapter recentsAdapter;
     TopPlacesAdapter topPlacesAdapter;
     TextView tv4;
-    ImageView hotels,flights,profile,imageView;
+    ImageView hotels,flights,chats_icon,profpic;
     String user_name;
 
     @Override
@@ -43,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
         tv4=findViewById(R.id.textView4);
         hotels=findViewById(R.id.button_hotels);
         flights=findViewById(R.id.button_flights);
-        profile=findViewById(R.id.button_profile);
-        imageView=findViewById(R.id.imageView);
+        chats_icon=findViewById(R.id.button_profile);
+        profpic=findViewById(R.id.imageView);
         Bundle extras = getIntent().getExtras();
         user_name=extras.getString("User_Name");
         Toast.makeText(MainActivity.this,user_name,Toast.LENGTH_SHORT).show();
-        imageView.setOnClickListener(new View.OnClickListener() {
+        profpic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(MainActivity.this, ProfileActivity.class);
@@ -100,23 +100,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        profile.setOnClickListener(new View.OnClickListener() {
+        chats_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(MainActivity.this, Chat.class);
+                i.putExtra("User_name",user_name);
                 startActivity(i);
             }
         });
     }
 
     private  void setRecentRecycler(List<RecentsData> recentsDataList){
-
         recentRecycler = findViewById(R.id.recent_recycler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         recentRecycler.setLayoutManager(layoutManager);
         recentsAdapter = new RecentsAdapter(this, recentsDataList);
         recentRecycler.setAdapter(recentsAdapter);
-
     }
 
     private  void setTopPlacesRecycler(List<TopPlacesData> topPlacesDataList){
