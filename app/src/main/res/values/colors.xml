@@ -7,4 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="sent_message_bg_color">#FF4081</color> <!-- Example color for sent messages -->
+    <color name="received_message_bg_color">#4CAF50</color> <!-- Example color for received messages -->
+
 </resources>
