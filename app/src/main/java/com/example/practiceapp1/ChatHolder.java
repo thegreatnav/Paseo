@@ -1,6 +1,7 @@
 package com.example.practiceapp1;
 
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -9,13 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ChatHolder extends RecyclerView.ViewHolder {
     TextView textViewName;
     TextView textViewMessage;
-    TextView textViewUid;
+
+    LinearLayout l1;
 
     public ChatHolder(@NonNull View itemView) {
         super(itemView);
         textViewName = itemView.findViewById(R.id.textViewName);
         textViewMessage = itemView.findViewById(R.id.textViewMessage);
-        textViewUid = itemView.findViewById(R.id.textViewUid);
+        l1=itemView.findViewById(R.id.l1);
     }
 }
 

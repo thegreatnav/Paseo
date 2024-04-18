@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class TopPlacesAdapter extends RecyclerView.Adapter<TopPlacesAdapter.TopPlacesViewHolder> {
@@ -39,7 +41,7 @@ public class TopPlacesAdapter extends RecyclerView.Adapter<TopPlacesAdapter.TopP
         holder.countryName.setText(topPlacesDataList.get(position).getCountryName());
         holder.placeName.setText(topPlacesDataList.get(position).getPlaceName());
         holder.price.setText(topPlacesDataList.get(position).getPrice());
-        holder.placeImage.setImageResource(topPlacesDataList.get(position).getImageUrl());
+        Picasso.get().load(topPlacesDataList.get(position).getImageUrl()).into(holder.placeImage);
     }
 
     @Override

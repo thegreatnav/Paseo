@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,11 +27,16 @@ public class Chat extends AppCompatActivity {
     Button backbtn, send_button;
     TextView editTextMessage;
     private String receiver_name = "nitishkumar@gmail.com", sender_name;
+    String user_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        Bundle extras = getIntent().getExtras();
+        user_name=extras.getString("User_name");
+        String names = user_name.replace(".com", "");
 
         backbtn = findViewById(R.id.back);
         send_button = findViewById(R.id.buttonSend);
@@ -43,7 +49,7 @@ public class Chat extends AppCompatActivity {
         messageRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Query to retrieve last 50 messages
-        Query query = messagesRef.limitToLast(50);
+        Query query = messagesRef.limitToLast(20);
 
         // FirebaseRecyclerOptions
         FirebaseRecyclerOptions<Message> options =
@@ -56,16 +62,17 @@ public class Chat extends AppCompatActivity {
                 new FirebaseRecyclerAdapter<Message, ChatHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull ChatHolder holder, int position, @NonNull Message model) {
-                        holder.textViewName.setText(model.getTime());
-                        holder.textViewUid.setText(model.getSenderId());
+                        holder.textViewName.setText(model.getSenderId());
 
                         // Check if the message is sent or received and set the appropriate text view
-                        if (model.getSenderId().equals(sender_name)) {
+                        if (model.getSenderId().equals(user_name)) {
                             holder.textViewMessage.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.sent_message_bg_color)); // Set background color for sent messages
                             holder.textViewMessage.setText(model.getText());
+                            holder.l1.setGravity(Gravity.START);
                         } else {
                             holder.textViewMessage.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.received_message_bg_color)); // Set background color for received messages
                             holder.textViewMessage.setText(model.getText());
+                            holder.l1.setGravity(Gravity.END);
                         }
                     }
 
@@ -82,6 +89,10 @@ public class Chat extends AppCompatActivity {
 
         // Start listening for data
         adapter.startListening();
+        if (adapter.getItemCount() > 0) {
+            // Scroll RecyclerView to the bottom
+            messageRecyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+        }
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +106,10 @@ public class Chat extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 sendMessage();
+                if (adapter.getItemCount() > 0) {
+                    // Scroll RecyclerView to the bottom
+                    messageRecyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+                }
             }
         });
     }
@@ -106,7 +121,7 @@ public class Chat extends AppCompatActivity {
             long timestamp = System.currentTimeMillis();
             // Format the timestamp to HH:mm format
             String formattedTime = android.text.format.DateFormat.format("hh:mm a", timestamp).toString();
-            Message message = new Message(messageText, receiver_name, sender_name, formattedTime);
+            Message message = new Message(messageText, receiver_name, user_name, formattedTime);
             messagesRef.push().setValue(message); // Send the message to Firebase
             editTextMessage.setText(""); // Clear the input field after sending
         }

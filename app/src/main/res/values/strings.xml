@@ -67,4 +67,51 @@
     </string>
     <string name="title_activity_flights">Flights</string>
     <string name="title_activity_profile">ProfileActivity</string>
+    <string name="munnar_image_url">
+        https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Munnar_hill_station_.JPG/1280px-Munnar_hill_station_.JPG
+    </string>
+    <string name="leh_image_url">
+        https://krossadventure.com/wp-content/uploads/2022/04/149628_1a40709a.jpg
+    </string>
+    <string name="goa_image_url">
+        https://www.heraldgoa.in/uploads/news/big_182530_ENCROACHMENT.jpg
+    </string>
+    <string name="mumbai_image_url">
+        https://cdn.britannica.com/26/84526-050-45452C37/Gateway-monument-India-entrance-Mumbai-Harbour-coast.jpg
+    </string>
+    <string name="jaipur_image_url">
+        https://assets.vogue.in/photos/5ce41ea8b803113d138f5cd2/16:9/w_1920,h_1080,c_limit/Jaipur-Travel-Shopping-Restaurants.jpg
+    </string>
+    <string name="chennai_image_url">
+        https://upload.wikimedia.org/wikipedia/commons/3/32/Chennai_Central.jpg
+    </string>
+    <string name="kerala_image_url">
+        https://www.authenticindiatours.com/app/uploads/2022/05/10-reasons-to-visit-Kerala-Kumarakom-Back-Waters-Boat-House-1400x550-c-default.jpg
+    </string>
+    <string name="mysore_image_url">
+        https://karnatakatourism.org/wp-content/uploads/2020/06/Mysuru-Palace-banner-1920_1100.jpg
+    </string>
+    <string name="manipal_image_url">
+        https://www.manipal.edu/content/dam/manipal/mu/imagesnew/Campuslife/1440%20x%20800px%20.jpg
+    </string>
+    <string name="udupi_image_url">
+        https://upload.wikimedia.org/wikipedia/commons/7/7d/Udupi_Sri_Krishna_Matha_Temple.jpg
+    </string>
+    <string name="bangalore_image_url">
+        https://lp-cms-production.imgix.net/2019-06/9483508eeee2b78a7356a15ed9c337a1-bengaluru-bangalore.jpg
+    </string>
+    <string name="kolkata_image_url">
+        https://s3.india.com/travel/wp-content/uploads/2017/10/Kolkata-city1.jpg
+    </string>
+    <string name="delhi_image_url">
+        https://media.tacdn.com/media/attractions-splice-spp-674x446/0f/c5/e8/5c.jpg
+    </string>
+    <string name="hyderabad_image_url">
+        https://static.toiimg.com/photo/104444312.cms
+    </string>
+    <string name="ahmedabad_image_url">
+        https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sheth_Hutheesinh_Temple.jpg/1200px-Sheth_Hutheesinh_Temple.jpg    </string>
+    <string name="sikkim_image_url">
+        https://assets.vogue.in/photos/5ce44893ba773d71660b5bfc/1:1/w_1080,h_1080,c_limit/Sikkim.jpg
+    </string>
 </resources>

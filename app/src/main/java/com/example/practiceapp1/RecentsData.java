@@ -5,17 +5,17 @@ public class RecentsData {
     String placeName;
     String countryName;
     String price;
-    Integer imageUrl;
+    String imageUrl;
 
-    public Integer getImageUrl() {
+    public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(Integer imageUrl) {
+    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
-    public RecentsData(String placeName, String countryName, String price, Integer imageUrl) {
+    public RecentsData(String placeName, String countryName, String price, String imageUrl) {
         this.placeName = placeName;
         this.countryName = countryName;
         this.price = price;

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.practiceapp1.DetailsActivity;
 import com.example.practiceapp1.RecentsData;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class RecentsAdapter extends RecyclerView.Adapter<RecentsAdapter.RecentsV
         holder.countryName.setText(recentsDataList.get(position).getCountryName());
         holder.placeName.setText(recentsDataList.get(position).getPlaceName());
         holder.price.setText(recentsDataList.get(position).getPrice());
-        holder.placeImage.setImageResource(recentsDataList.get(position).getImageUrl());
+        Picasso.get().load(recentsDataList.get(position).getImageUrl()).into(holder.placeImage);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

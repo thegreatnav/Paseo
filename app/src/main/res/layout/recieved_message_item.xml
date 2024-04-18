@@ -9,7 +9,7 @@
         android:id="@+id/textViewReceivedMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/received_message_bg_color"
+        android:background="#6B03A9F4"
         android:padding="8dp"
         android:textColor="@android:color/black"
         android:textSize="16sp"
