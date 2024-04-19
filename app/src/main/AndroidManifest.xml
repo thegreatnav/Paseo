@@ -17,6 +17,24 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Srinagar"
+            android:exported="false" />
+        <activity
+            android:name=".Manali"
+            android:exported="false" />
+        <activity
+            android:name=".Leh_Ladakh"
+            android:exported="false" />
+        <activity
+            android:name=".Andaman"
+            android:exported="false" />
+        <activity
+            android:name=".Agra"
+            android:exported="false" />
+        <activity
+            android:name=".Gulmarg"
+            android:exported="false" />
+        <activity
             android:name=".Places"
             android:exported="false" />
         <activity
