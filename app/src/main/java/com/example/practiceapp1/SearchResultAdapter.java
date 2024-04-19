@@ -12,23 +12,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.practiceapp1.DetailsActivity;
-import com.example.practiceapp1.RecentsData;
+import com.example.practiceapp1.SearchPlacesData;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class RecentsAdapter extends RecyclerView.Adapter<RecentsAdapter.RecentsViewHolder> {
+public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.SearchPlacesViewHolder> {
 
     Context context;
-    List<RecentsData> recentsDataList;
+    List<SearchPlacesData> SearchPlacesDataList;
 
-    public RecentsAdapter(Context context, List<RecentsData> recentsDataList) {
+    public SearchResultAdapter(Context context, List<SearchPlacesData> SearchPlacesDataList) {
         this.context = context;
-        this.recentsDataList = recentsDataList;
+        this.SearchPlacesDataList = SearchPlacesDataList;
     }
 
     public interface OnItemClickListener {
-        void onItemClick(RecentsData item);
+        void onItemClick(SearchPlacesData item);
     }
 
     private OnItemClickListener listener;
@@ -39,14 +39,14 @@ public class RecentsAdapter extends RecyclerView.Adapter<RecentsAdapter.RecentsV
 
     @NonNull
     @Override
-    public RecentsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recents_row_item, parent, false);
-        return new RecentsViewHolder(view);
+    public SearchPlacesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.search_result_item, parent, false);
+        return new SearchPlacesViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecentsViewHolder holder, int position) {
-        RecentsData currentItem = recentsDataList.get(position);
+    public void onBindViewHolder(@NonNull SearchPlacesViewHolder holder, int position) {
+        SearchPlacesData currentItem = SearchPlacesDataList.get(position);
         holder.countryName.setText(currentItem.getCountryName());
         holder.placeName.setText(currentItem.getPlaceName());
         holder.price.setText(currentItem.getPrice());
@@ -55,15 +55,15 @@ public class RecentsAdapter extends RecyclerView.Adapter<RecentsAdapter.RecentsV
 
     @Override
     public int getItemCount() {
-        return recentsDataList.size();
+        return SearchPlacesDataList.size();
     }
 
-    public class RecentsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class SearchPlacesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView placeImage;
         TextView placeName, countryName, price;
 
-        public RecentsViewHolder(@NonNull View itemView) {
+        public SearchPlacesViewHolder(@NonNull View itemView) {
             super(itemView);
             placeImage = itemView.findViewById(R.id.place_image);
             placeName = itemView.findViewById(R.id.place_name);
@@ -76,7 +76,7 @@ public class RecentsAdapter extends RecyclerView.Adapter<RecentsAdapter.RecentsV
         public void onClick(View v) {
             int position = getAdapterPosition();
             if (position != RecyclerView.NO_POSITION && listener != null) {
-                listener.onItemClick(recentsDataList.get(position));
+                listener.onItemClick(SearchPlacesDataList.get(position));
             }
         }
     }

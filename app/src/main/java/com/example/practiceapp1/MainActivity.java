@@ -27,12 +27,12 @@ import com.example.practiceapp1.databinding.ActivityMainBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecentsAdapter.OnItemClickListener {
 
     RecyclerView recentRecycler, topPlacesRecycler;
     RecentsAdapter recentsAdapter;
     TopPlacesAdapter topPlacesAdapter;
-    TextView tv4,see_all_topplaces;
+    TextView see_all_recentplaces,see_all_topplaces;
     ImageView hotels,flights,chats_icon,profpic;
     String user_name;
     EditText search_destinations;
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recentRecycler = findViewById(R.id.recent_recycler);
         topPlacesRecycler = findViewById(R.id.top_places_recycler);
-        tv4=findViewById(R.id.textView4);
+        see_all_recentplaces=findViewById(R.id.textView4);
         hotels=findViewById(R.id.button_hotels);
         flights=findViewById(R.id.button_flights);
         chats_icon=findViewById(R.id.button_profile);
@@ -81,10 +81,11 @@ public class MainActivity extends AppCompatActivity {
 
         setTopPlacesRecycler(topPlacesDataList);
 
-        tv4.setOnClickListener(new View.OnClickListener() {
+        see_all_recentplaces.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(MainActivity.this, DetailsActivity.class);
+                Intent i=new Intent(MainActivity.this,Places.class);
+                i.putExtra("User_name",user_name);
                 startActivity(i);
             }
         });
@@ -120,6 +121,10 @@ public class MainActivity extends AppCompatActivity {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     // Your action when Enter key is pressed
                     Toast.makeText(getApplicationContext(),"You are searching for : "+search_destinations.getText().toString(),Toast.LENGTH_SHORT).show();
+                    Intent i=new Intent(MainActivity.this,Places.class);
+                    i.putExtra("User_name",user_name);
+                    i.putExtra("query",search_destinations.getText().toString().trim().toLowerCase());
+                    startActivity(i);
                     return true; // Consume the event
                 }
                 return false; // Return false to let the system handle other keys
@@ -132,6 +137,16 @@ public class MainActivity extends AppCompatActivity {
                 Intent i=new Intent(MainActivity.this,Places.class);
                 i.putExtra("User_name",user_name);
                 startActivity(i);
+            }
+        });
+        recentsAdapter.setOnItemClickListener(new RecentsAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(RecentsData item) {
+                // Open the DetailsActivity with the clicked item
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                intent.putExtra("User_name",user_name);
+                // Pass any data you want to the DetailsActivity using Intent extras
+                startActivity(intent);
             }
         });
     }
@@ -152,5 +167,17 @@ public class MainActivity extends AppCompatActivity {
         topPlacesAdapter = new TopPlacesAdapter(this, topPlacesDataList);
         topPlacesRecycler.setAdapter(topPlacesAdapter);
 
+    }
+
+    @Override
+    public void onItemClick(RecentsData item) {
+        // Handle item click here, for example, start a new activity
+        Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+        // Pass any data you need to the details activity
+        intent.putExtra("placeName", item.getPlaceName());
+        intent.putExtra("countryName", item.getCountryName());
+        intent.putExtra("price", item.getPrice());
+        intent.putExtra("imageUrl", item.getImageUrl());
+        startActivity(intent);
     }
 }
