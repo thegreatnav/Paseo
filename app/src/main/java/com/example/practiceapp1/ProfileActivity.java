@@ -49,6 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(ProfileActivity.this, Login.class);
+              //  i.putExtra("Place","Gulmarg");
                 startActivity(i);
             }
         });

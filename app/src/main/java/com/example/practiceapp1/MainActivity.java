@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
     TopPlacesAdapter topPlacesAdapter;
     TextView tv4;
     ImageView hotels,flights,profile,imageView;
-    String user_name;
+    public String user_name;
+    String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         imageView=findViewById(R.id.imageView);
         Bundle extras = getIntent().getExtras();
         user_name=extras.getString("User_Name");
+        user = user_name;
         Toast.makeText(MainActivity.this,user_name,Toast.LENGTH_SHORT).show();
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,35 +123,53 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(RecentsData recentsDataList) {
 
-                Toast.makeText(MainActivity.this,recentsDataList.getPlaceName(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this,recentsDataList.getPlaceName(),Toast.LENGTH_SHORT).show();
                 if(recentsDataList.getPlaceName()=="Srinagar")
                 {
                     Intent intent=new Intent(MainActivity.this, Srinagar.class);
+                    //intent.putExtra("Place","Srinagar");
+                    intent.putExtra("user",user_name);
                     startActivity(intent);
                 }
                 else if(recentsDataList.getPlaceName()=="Leh Ladakh")
                 {
                     Intent intent=new Intent(MainActivity.this, Leh_Ladakh.class);
+                    //intent.putExtra("Place","Leh_Ladakh");
+                    intent.putExtra("user",user_name);
+
                     startActivity(intent);
                 }
                 else if(recentsDataList.getPlaceName()=="Andaman")
                 {
                     Intent intent=new Intent(MainActivity.this, Andaman.class);
+                  //  intent.putExtra("Place","Andaman");
+                    intent.putExtra("user",user_name);
+
                     startActivity(intent);
                 }
                 else if(recentsDataList.getPlaceName()=="Manali")
                 {
                     Intent intent=new Intent(MainActivity.this, Manali.class);
+                   // intent.putExtra("Place","Manali");
+                    intent.putExtra("user",user_name);
+
                     startActivity(intent);
                 }
                 else if(recentsDataList.getPlaceName()=="Agra")
                 {
                     Intent intent=new Intent(MainActivity.this, Agra.class);
+                    //intent.putExtra("Place","Agra");
+                    intent.putExtra("user",user_name);
+
                     startActivity(intent);
                 }
                 else if(recentsDataList.getPlaceName()=="Gulmarg")
                 {
+                    Toast.makeText(MainActivity.this,user_name,Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(MainActivity.this, Gulmarg.class);
+                    intent.putExtra("user",user_name);
+
+
                     startActivity(intent);
                 }
             }

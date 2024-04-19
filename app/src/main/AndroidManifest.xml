@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Review"
+            android:exported="false" />
+        <activity
             android:name=".Gulmarg"
             android:exported="false" />
         <activity
