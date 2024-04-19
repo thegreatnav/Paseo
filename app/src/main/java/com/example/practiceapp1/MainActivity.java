@@ -58,12 +58,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         List<RecentsData> recentsDataList = new ArrayList<>();
-        recentsDataList.add(new RecentsData("AM Lake","India","From $200",R.drawable.recentimage1));
-        recentsDataList.add(new RecentsData("Nilgiri Hills","India","From $300",R.drawable.recentimage2));
-        recentsDataList.add(new RecentsData("AM Lake","India","From $200",R.drawable.recentimage1));
-        recentsDataList.add(new RecentsData("Nilgiri Hills","India","From $300",R.drawable.recentimage2));
-        recentsDataList.add(new RecentsData("AM Lake","India","From $200",R.drawable.recentimage1));
-        recentsDataList.add(new RecentsData("Nilgiri Hills","India","From $300",R.drawable.recentimage2));
+        recentsDataList.add(new RecentsData("Srinagar","India","From $200",R.drawable.recentimage1));
+        recentsDataList.add(new RecentsData("Leh Ladakh","India","From $300",R.drawable.recentimage2));
+        recentsDataList.add(new RecentsData("Andaman","India","From $200",R.drawable.recentimage1));
+        recentsDataList.add(new RecentsData("Manali","India","From $300",R.drawable.recentimage2));
+        recentsDataList.add(new RecentsData("Agra","India","From $200",R.drawable.recentimage1));
+        recentsDataList.add(new RecentsData("Gulmarg","India","From $300",R.drawable.recentimage2));
 
         setRecentRecycler(recentsDataList);
 
@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
         topPlacesDataList.add(new TopPlacesData("Kasimir Hill","India","$200 - $500",R.drawable.topplaces));
 
         setTopPlacesRecycler(topPlacesDataList);
+
+        recentsAdapter.getItemCount();
 
         tv4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,8 +116,46 @@ public class MainActivity extends AppCompatActivity {
         recentRecycler = findViewById(R.id.recent_recycler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         recentRecycler.setLayoutManager(layoutManager);
-        recentsAdapter = new RecentsAdapter(this, recentsDataList);
+        recentsAdapter = new RecentsAdapter(this, recentsDataList, new RecentsAdapter.ItemClickListener(){
+
+            @Override
+            public void onItemClick(RecentsData recentsDataList) {
+
+                Toast.makeText(MainActivity.this,recentsDataList.getPlaceName(),Toast.LENGTH_SHORT).show();
+                if(recentsDataList.getPlaceName()=="Srinagar")
+                {
+                    Intent intent=new Intent(MainActivity.this, Srinagar.class);
+                    startActivity(intent);
+                }
+                else if(recentsDataList.getPlaceName()=="Leh Ladakh")
+                {
+                    Intent intent=new Intent(MainActivity.this, Leh_Ladakh.class);
+                    startActivity(intent);
+                }
+                else if(recentsDataList.getPlaceName()=="Andaman")
+                {
+                    Intent intent=new Intent(MainActivity.this, Andaman.class);
+                    startActivity(intent);
+                }
+                else if(recentsDataList.getPlaceName()=="Manali")
+                {
+                    Intent intent=new Intent(MainActivity.this, Manali.class);
+                    startActivity(intent);
+                }
+                else if(recentsDataList.getPlaceName()=="Agra")
+                {
+                    Intent intent=new Intent(MainActivity.this, Agra.class);
+                    startActivity(intent);
+                }
+                else if(recentsDataList.getPlaceName()=="Gulmarg")
+                {
+                    Intent intent=new Intent(MainActivity.this, Gulmarg.class);
+                    startActivity(intent);
+                }
+            }
+        });
         recentRecycler.setAdapter(recentsAdapter);
+
 
     }
 

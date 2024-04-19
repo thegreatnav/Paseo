@@ -21,10 +21,15 @@ public class RecentsAdapter extends RecyclerView.Adapter<RecentsAdapter.RecentsV
     Context context;
     List<RecentsData> recentsDataList;
 
-    public RecentsAdapter(Context context, List<RecentsData> recentsDataList) {
+    private ItemClickListener mItemListener;
+
+
+    public RecentsAdapter(Context context, List<RecentsData> recentsDataList, ItemClickListener itemClickListener) {
         this.context = context;
         this.recentsDataList = recentsDataList;
+        this.mItemListener=itemClickListener;
     }
+
 
     @NonNull
     @Override
@@ -39,17 +44,15 @@ public class RecentsAdapter extends RecyclerView.Adapter<RecentsAdapter.RecentsV
     @Override
     public void onBindViewHolder(@NonNull RecentsViewHolder holder, int position) {
 
+
+
         holder.countryName.setText(recentsDataList.get(position).getCountryName());
         holder.placeName.setText(recentsDataList.get(position).getPlaceName());
         holder.price.setText(recentsDataList.get(position).getPrice());
         holder.placeImage.setImageResource(recentsDataList.get(position).getImageUrl());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i=new Intent(context, DetailsActivity.class);
-                context.startActivity(i);
-            }
+        holder.itemView.setOnClickListener(view -> {
+            mItemListener.onItemClick(recentsDataList.get(position));
         });
 
     }
@@ -58,6 +61,11 @@ public class RecentsAdapter extends RecyclerView.Adapter<RecentsAdapter.RecentsV
     public int getItemCount() {
         return recentsDataList.size();
     }
+
+    public interface ItemClickListener{
+        void onItemClick(RecentsData recentsDataList);
+    }
+
 
     public static final class RecentsViewHolder extends RecyclerView.ViewHolder{
 
